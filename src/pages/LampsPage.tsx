@@ -19,8 +19,6 @@ const LampsPage: React.FC = () => {
 
   const [filters, setFilters] = useState<LampFilters>({
     title: "",
-    minPower: undefined,
-    maxPower: undefined,
   });
 
   useEffect(() => {
@@ -51,17 +49,9 @@ const LampsPage: React.FC = () => {
     }));
   };
 
-  const handleFilterSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     loadLamps();
-  };
-
-  const handleResetFilters = () => {
-    setFilters({
-      title: "",
-      minPower: undefined,
-      maxPower: undefined,
-    });
   };
 
   const getDefaultImage = () => {
@@ -72,85 +62,24 @@ const LampsPage: React.FC = () => {
     <Container>
       <Row className="mb-4">
         <Col>
-          <h1>Каталог ламп</h1>
-          <p className="text-muted">
-            Выберите подходящие лампы для расчета освещения
-          </p>
+          <h1>Приборы</h1>
         </Col>
       </Row>
 
-      {/* Filters */}
-      <Row className="mb-4">
-        <Col>
-          <Card>
-            <Card.Header>
-              <h5 className="mb-0">Фильтры</h5>
-            </Card.Header>
-            <Card.Body>
-              <Form onSubmit={handleFilterSubmit}>
-                <Row>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Название лампы</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Введите название..."
-                        value={filters.title || ""}
-                        onChange={(e) =>
-                          handleFilterChange("title", e.target.value)
-                        }
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Мощность от (Вт)</Form.Label>
-                      <Form.Control
-                        type="number"
-                        placeholder="Мин. мощность"
-                        value={filters.minPower || ""}
-                        onChange={(e) =>
-                          handleFilterChange(
-                            "minPower",
-                            parseInt(e.target.value) || 0,
-                          )
-                        }
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={3}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Мощность до (Вт)</Form.Label>
-                      <Form.Control
-                        type="number"
-                        placeholder="Макс. мощность"
-                        value={filters.maxPower || ""}
-                        onChange={(e) =>
-                          handleFilterChange(
-                            "maxPower",
-                            parseInt(e.target.value) || 0,
-                          )
-                        }
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={2} className="d-flex align-items-end">
-                    <div className="d-grid gap-2 w-100">
-                      <Button variant="primary" type="submit">
-                        Применить
-                      </Button>
-                      <Button
-                        variant="outline-secondary"
-                        onClick={handleResetFilters}
-                      >
-                        Сбросить
-                      </Button>
-                    </div>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-          </Card>
+      <Row className="mb-4 justify-content-center">
+        <Col md={6}>
+          <Form onSubmit={handleSearchSubmit} className="d-flex">
+            <Form.Control
+              type="text"
+              placeholder="Введите название..."
+              value={filters.title || ""}
+              onChange={(e) => handleFilterChange("title", e.target.value)}
+              className="me-2"
+            />
+            <Button variant="primary" type="submit">
+              Поиск
+            </Button>
+          </Form>
         </Col>
       </Row>
 
