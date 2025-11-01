@@ -4,23 +4,25 @@
   padding: var(--m-2) var(--m-4);
   border-radius: var(--border-radius);
   cursor: pointer;
+
+  transition: none;
 }
 
-.button_primary {
+.button.button_primary {
   color: var(--bg-primary);
   background-color: var(--active-primary);
   border: none;
 }
 
-.button_primary:hover {
+.button.button_primary:hover {
   background-color: var(--active-secondary);
 }
 
-.button_neutral {
+.button.button_neutral {
   background-color: var(--bg-primary);
   border: var(--border-width) solid var(--border-color);
 }
 
-.button_neutral:hover {
+.button.button_neutral:hover {
   background-color: var(--bg-secondary);
 }

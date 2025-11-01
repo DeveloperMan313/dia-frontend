@@ -67,3 +67,14 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/* 10. Reset bootstrap header margins/line-height */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  line-height: 1.5;
+}

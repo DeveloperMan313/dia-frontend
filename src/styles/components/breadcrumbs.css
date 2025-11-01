@@ -1,0 +1,9 @@
+.breadcrumbs {
+    position: absolute;
+    top: 6rem;
+    left: 3rem;
+}
+
+.breadcrumbs .breadcrumbs__item a {
+    color: var(--text-primary);
+}

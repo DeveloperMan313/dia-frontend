@@ -4,13 +4,13 @@
   position: relative;
 }
 
-.text-input__label {
+.text-input .text-input__label {
   position: absolute;
   top: calc(var(--font-small) * -1.5);
   left: 0;
 }
 
-.text-input__input {
+.text-input .text-input__input {
   width: 100%;
   height: var(--btn-height);
   min-height: var(--btn-height);
@@ -19,8 +19,16 @@
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
+
+  transition: none;
 }
 
-.text-input__input:focus {
+.text-input .text-input__input::placeholder {
+  color: var(--text-secondary);
+}
+
+.text-input .text-input__input:focus {
   border-color: var(--active-primary);
+
+  box-shadow: none;
 }

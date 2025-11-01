@@ -1,15 +1,23 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const HomePage: React.FC = () => {
   return (
-    <Container>
+    <Container style={{ paddingTop: "8.75rem" }}>
       <Row className="mb-5">
         <Col>
           <div className="text-center">
             <h1 className="display-4 mb-4">Let There Be Light</h1>
             <p className="lead">Расчет освещения помещений</p>
           </div>
+        </Col>
+      </Row>
+
+      <Row className="mb-5 justify-content-center">
+        <Col xs="auto">
+          <Button className="button button_primary" href="/lamps">
+            К каталогу
+          </Button>
         </Col>
       </Row>
 
@@ -34,7 +42,7 @@ const HomePage: React.FC = () => {
                 <Col md={4} className="text-center mb-3">
                   <div className="h4 text-primary">1</div>
                   <h5>Выбор ламп</h5>
-                  <p>Ознакомьтесь с нашим каталогом современных ламп</p>
+                  <p>Ознакомьтесь с нашим каталогом современных ламп и выберите желаемые модели</p>
                 </Col>
                 <Col md={4} className="text-center mb-3">
                   <div className="h4 text-primary">2</div>
@@ -47,7 +55,7 @@ const HomePage: React.FC = () => {
                 <Col md={4} className="text-center mb-3">
                   <div className="h4 text-primary">3</div>
                   <h5>Результат</h5>
-                  <p>Получите готовое решение с детальными спецификациями</p>
+                  <p>Получите готовое решение</p>
                 </Col>
               </Row>
             </Card.Body>

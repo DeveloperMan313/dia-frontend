@@ -6,9 +6,3 @@ export interface Lamp {
   scattering_angle_deg: number;
   image_url?: string;
 }
-
-export interface LampFilters {
-  title?: string;
-  minPower?: number;
-  maxPower?: number;
-}

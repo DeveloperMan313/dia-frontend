@@ -15,19 +15,21 @@ const Breadcrumbs: React.FC = () => {
     return pathname.charAt(0).toUpperCase() + pathname.slice(1);
   };
 
+  if (location.pathname == "/") return;
+
   return (
-    <Breadcrumb className="mt-3">
-      <Breadcrumb.Item href="/">Главная</Breadcrumb.Item>
+    <Breadcrumb className="breadcrumbs">
+      <Breadcrumb.Item className="breadcrumbs__item" href="/">Главная</Breadcrumb.Item>
       {pathnames.map((name, index) => {
         const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
         const isLast = index === pathnames.length - 1;
 
         return isLast ? (
-          <Breadcrumb.Item active key={routeTo}>
+          <Breadcrumb.Item className="breadcrumbs__item" active key={routeTo}>
             {getBreadcrumbName(name)}
           </Breadcrumb.Item>
         ) : (
-          <Breadcrumb.Item href={routeTo} key={routeTo}>
+          <Breadcrumb.Item className="breadcrumbs__item" href={routeTo} key={routeTo}>
             {getBreadcrumbName(name)}
           </Breadcrumb.Item>
         );

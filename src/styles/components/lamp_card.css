@@ -1,6 +1,8 @@
 .lamp-card {
   flex: none;
   display: flex;
+
+  border: none;
 }
 
 .lamp-card.lamp-card_vertical {
@@ -34,6 +36,8 @@
 
 .lamp-card.lamp-card_vertical .lamp-card__body-wrapper {
   height: 6rem;
+
+  padding: 0;
 }
 
 .lamp-card.lamp-card_vertical .lamp-card__body {
@@ -53,6 +57,8 @@
   width: fit-content;
   margin-top: var(--m-2);
   color: var(--text-secondary);
+
+  margin-bottom: 0;
 }
 
 .lamp-card.lamp-card_horizontal .lamp-card__about .text-input {
@@ -85,6 +91,9 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  margin-bottom: 0;
+  color: var(--text-primary);
 }
 
 .lamp-card.lamp-card_horizontal :is(.lamp-card__title, .lamp-card__about) {

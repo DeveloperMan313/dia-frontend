@@ -47,15 +47,11 @@ const MOCK_LAMPS: Lamp[] = [
 ];
 
 export const apiService = {
-  // Get all lamps with optional filters
-  async getLamps(filters?: {
-    title?: string;
-    minPower?: number;
-    maxPower?: number;
-  }): Promise<Lamp[]> {
+  // Get all lamps with optional title filter
+  async getLamps(title: string): Promise<Lamp[]> {
     try {
       const params = new URLSearchParams();
-      if (filters?.title) params.append("title", filters.title);
+      if (title) params.append("title", title);
 
       const response = await fetch(`${API_BASE_URL}/lamps?${params}`);
 
@@ -65,37 +61,13 @@ export const apiService = {
 
       const lamps: Lamp[] = await response.json();
 
-      // Apply additional filters client-side if backend doesn't support them
-      let filteredLamps = lamps;
-      if (filters?.minPower !== undefined) {
-        filteredLamps = filteredLamps.filter(
-          (lamp) => lamp.power_w >= filters.minPower!,
-        );
-      }
-      if (filters?.maxPower !== undefined) {
-        filteredLamps = filteredLamps.filter(
-          (lamp) => lamp.power_w <= filters.maxPower!,
-        );
-      }
-
-      return filteredLamps;
+      return lamps;
     } catch (error) {
-      console.warn("Failed to fetch lamps from API, using mock data:", error);
       // Fallback to mock data
       let mockLamps = [...MOCK_LAMPS];
-      if (filters?.title) {
+      if (title) {
         mockLamps = mockLamps.filter((lamp) =>
-          lamp.title.toLowerCase().includes(filters.title!.toLowerCase()),
-        );
-      }
-      if (filters?.minPower !== undefined) {
-        mockLamps = mockLamps.filter(
-          (lamp) => lamp.power_w >= filters.minPower!,
-        );
-      }
-      if (filters?.maxPower !== undefined) {
-        mockLamps = mockLamps.filter(
-          (lamp) => lamp.power_w <= filters.maxPower!,
+          lamp.title.toLowerCase().includes(title.toLowerCase()),
         );
       }
       return mockLamps;
@@ -116,7 +88,6 @@ export const apiService = {
 
       return await response.json();
     } catch (error) {
-      console.warn("Failed to fetch lamp from API, using mock data:", error);
       // Fallback to mock data
       const mockLamp = MOCK_LAMPS.find((lamp) => lamp.id === id);
       return mockLamp || null;
