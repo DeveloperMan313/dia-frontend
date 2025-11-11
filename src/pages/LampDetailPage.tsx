@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Row,
-  Col,
-  Alert,
-  Spinner,
-  Image
-} from "react-bootstrap";
+import { Row, Col, Alert, Spinner, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Lamp } from "../types";
 import { apiService } from "../services/api";
@@ -99,9 +93,18 @@ const LampDetailPage: React.FC = () => {
         <div className="page-lamp__info">
           <h2>{lamp.title}</h2>
           <div>
-            <p className="page-lamp__property"><span>Мощность</span><span>{lamp.power_w} вт</span></p>
-            <p className="page-lamp__property"><span>Световой поток</span><span>{lamp.luminous_flux_lm} лм</span></p>
-            <p className="page-lamp__property"><span>Угол рассеивания</span><span>{lamp.scattering_angle_deg} °</span></p>
+            <p className="page-lamp__property">
+              <span>Мощность</span>
+              <span>{lamp.power_w} вт</span>
+            </p>
+            <p className="page-lamp__property">
+              <span>Световой поток</span>
+              <span>{lamp.luminous_flux_lm} лм</span>
+            </p>
+            <p className="page-lamp__property">
+              <span>Угол рассеивания</span>
+              <span>{lamp.scattering_angle_deg} °</span>
+            </p>
           </div>
         </div>
       </div>

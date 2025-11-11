@@ -42,7 +42,10 @@ const HomePage: React.FC = () => {
                 <Col md={4} className="text-center mb-3">
                   <div className="h4 text-primary">1</div>
                   <h5>Выбор ламп</h5>
-                  <p>Ознакомьтесь с нашим каталогом современных ламп и выберите желаемые модели</p>
+                  <p>
+                    Ознакомьтесь с нашим каталогом современных ламп и выберите
+                    желаемые модели
+                  </p>
                 </Col>
                 <Col md={4} className="text-center mb-3">
                   <div className="h4 text-primary">2</div>

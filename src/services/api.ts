@@ -1,4 +1,4 @@
-import { Lamp } from "../types";
+import { Lamp, RequestBin } from "../types";
 
 const API_BASE_URL = "/api";
 
@@ -46,6 +46,11 @@ const MOCK_LAMPS: Lamp[] = [
   },
 ];
 
+const MOCK_REQUEST_BIN: RequestBin = {
+  request_id: 0,
+  item_count: -1,
+};
+
 export const apiService = {
   // Get all lamps with optional title filter
   async getLamps(title: string): Promise<Lamp[]> {
@@ -91,6 +96,22 @@ export const apiService = {
       // Fallback to mock data
       const mockLamp = MOCK_LAMPS.find((lamp) => lamp.id === id);
       return mockLamp || null;
+    }
+  },
+
+  // Get request bin info for user
+  async getRequestBin(): Promise<RequestBin> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/light-requests/cart`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      // Fallback to mock data
+      return MOCK_REQUEST_BIN;
     }
   },
 };
