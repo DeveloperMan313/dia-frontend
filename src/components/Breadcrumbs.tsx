@@ -1,6 +1,6 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumbs: React.FC = () => {
   const location = useLocation();
@@ -19,8 +19,8 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <Breadcrumb className="breadcrumbs">
-      <Breadcrumb.Item className="breadcrumbs__item" href="/">
-        Главная
+      <Breadcrumb.Item className="breadcrumbs__item">
+        <Link to="/">Главная</Link>
       </Breadcrumb.Item>
       {pathnames.map((name, index) => {
         const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
@@ -31,12 +31,8 @@ const Breadcrumbs: React.FC = () => {
             {getBreadcrumbName(name)}
           </Breadcrumb.Item>
         ) : (
-          <Breadcrumb.Item
-            className="breadcrumbs__item"
-            href={routeTo}
-            key={routeTo}
-          >
-            {getBreadcrumbName(name)}
+          <Breadcrumb.Item className="breadcrumbs__item" key={routeTo}>
+            <Link to={routeTo}>{getBreadcrumbName(name)}</Link>
           </Breadcrumb.Item>
         );
       })}

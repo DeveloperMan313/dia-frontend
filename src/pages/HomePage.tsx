@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
@@ -15,9 +16,9 @@ const HomePage: React.FC = () => {
 
       <Row className="mb-5 justify-content-center">
         <Col xs="auto">
-          <Button className="button button_primary" href="/lamps">
-            К каталогу
-          </Button>
+          <Link to="/lamps">
+            <Button className="button button_primary">К каталогу</Button>
+          </Link>
         </Col>
       </Row>
 
