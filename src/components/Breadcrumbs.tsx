@@ -1,10 +1,11 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MouseEvent } from "react";
 
 const Breadcrumbs: React.FC = () => {
   const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
+  const pathnames = ["", ...location.pathname.split("/").filter((x) => x)];
 
   const getBreadcrumbName = (pathname: string) => {
     if (pathname === "") return "Главная";
@@ -17,22 +18,28 @@ const Breadcrumbs: React.FC = () => {
 
   if (location.pathname == "/") return;
 
+  const navigate = useNavigate();
+
+  const onCrumbClick = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    navigate((event.currentTarget.children[0] as HTMLAnchorElement).pathname);
+  };
+
   return (
     <Breadcrumb className="breadcrumbs">
-      <Breadcrumb.Item className="breadcrumbs__item">
-        <Link to="/">Главная</Link>
-      </Breadcrumb.Item>
       {pathnames.map((name, index) => {
-        const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
+        const routeTo = `/${pathnames.slice(1, index + 1).join("/")}`;
         const isLast = index === pathnames.length - 1;
 
-        return isLast ? (
-          <Breadcrumb.Item className="breadcrumbs__item" active key={routeTo}>
+        return (
+          <Breadcrumb.Item
+            className="breadcrumbs__item"
+            href={routeTo}
+            active={isLast}
+            key={index}
+            onClick={isLast ? undefined : onCrumbClick}
+          >
             {getBreadcrumbName(name)}
-          </Breadcrumb.Item>
-        ) : (
-          <Breadcrumb.Item className="breadcrumbs__item" key={routeTo}>
-            <Link to={routeTo}>{getBreadcrumbName(name)}</Link>
           </Breadcrumb.Item>
         );
       })}
