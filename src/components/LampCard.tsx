@@ -9,7 +9,7 @@ export const LampCard: FC<Lamp> = ({
   luminous_flux_lm,
   image_url,
 }) => {
-  const stockLampImageURL = "/lamp-stock.jpg";
+  const stockLampImageURL = "/lamp-stock.svg";
 
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,

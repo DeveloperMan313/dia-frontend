@@ -30,7 +30,7 @@ const LampDetailPage: React.FC = () => {
     }
   };
 
-  const stockLampImageURL = "/lamp-stock.jpg";
+  const stockLampImageURL = "/lamp-stock.svg";
 
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,
