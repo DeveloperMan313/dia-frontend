@@ -18,7 +18,7 @@ const NavigationBar: React.FC = () => {
         <Navbar.Brand>
           <Nav.Link className="navbar__logo" as={Link} to="/">
             <h2>Да будет</h2>
-            <LampIcon className="navbar__logo-icon" />
+            <LampIcon className="navbar__logo-icon" color="#f7ca59" />
           </Nav.Link>
         </Navbar.Brand>
         <button
