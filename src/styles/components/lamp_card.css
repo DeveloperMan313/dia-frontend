@@ -29,7 +29,7 @@
 }
 
 .lamp-card .lamp-card__placeholder {
-  padding: 5%;
+  padding: 1rem;
   overflow: visible;
 }
 
@@ -86,6 +86,16 @@
 .lamp-card:is(.lamp-card_horizontal, .lamp-card_vertical:hover)
   .lamp-card__body {
   background-color: var(--bg-secondary);
+}
+
+@media only screen and (max-width: 430px) {
+  .lamp-card.lamp-card_vertical .lamp-card__add-btn {
+    display: block;
+  }
+
+  .lamp-card .lamp-card__body {
+    background-color: var(--bg-secondary);
+  }
 }
 
 .lamp-card.lamp-card_horizontal .lamp-card__body {
