@@ -3,6 +3,7 @@ import { Row, Col, Alert, Spinner, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Lamp } from "../types";
 import { apiService } from "../services/api";
+import LampIcon from "../components/LampIcon";
 
 const LampDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,14 +31,14 @@ const LampDetailPage: React.FC = () => {
     }
   };
 
-  const stockLampImageURL = "/lamp-stock.svg";
-
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,
   ) => {
-    if (e.currentTarget.src.endsWith(stockLampImageURL)) return;
-    e.currentTarget.src = stockLampImageURL;
+    e.currentTarget.onerror = null;
+    setImageError(true);
   };
+
+  let [imageError, setImageError] = useState(false);
 
   if (loading) {
     return (
@@ -85,11 +86,15 @@ const LampDetailPage: React.FC = () => {
     <div className="page-lamp">
       <h1>О приборе</h1>
       <div className="page-lamp__main">
-        <Image
-          className="page-lamp__image"
-          src={lamp.image_url || stockLampImageURL}
-          onError={handleImageError}
-        />
+        {lamp.image_url && !imageError ? (
+          <Image
+            className="page-lamp__image"
+            src={lamp.image_url}
+            onError={handleImageError}
+          />
+        ) : (
+          <LampIcon className="page-lamp__placeholder" color="#989898" />
+        )}
         <div className="page-lamp__info">
           <h2>{lamp.title}</h2>
           <div>

@@ -1,7 +1,8 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { Button, Container, Card } from "react-bootstrap";
 import { Lamp } from "../types";
 import { Link } from "react-router-dom";
+import LampIcon from "./LampIcon";
 
 export const LampCard: FC<Lamp> = ({
   id,
@@ -9,24 +10,28 @@ export const LampCard: FC<Lamp> = ({
   luminous_flux_lm,
   image_url,
 }) => {
-  const stockLampImageURL = "/lamp-stock.svg";
-
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,
   ) => {
-    if (e.currentTarget.src.endsWith(stockLampImageURL)) return;
-    e.currentTarget.src = stockLampImageURL;
+    e.currentTarget.onerror = null;
+    setImageError(true);
   };
+
+  let [imageError, setImageError] = useState(false);
 
   return (
     <Card className="lamp-card lamp-card_vertical">
       <Link className="lamp-card__a" to={`/lamps/${id}`}>
-        <Card.Img
-          className="lamp-card__image"
-          variant="top"
-          src={image_url || stockLampImageURL}
-          onError={handleImageError}
-        />
+        {image_url && !imageError ? (
+          <Card.Img
+            className="lamp-card__image"
+            variant="top"
+            src={image_url}
+            onError={handleImageError}
+          />
+        ) : (
+          <LampIcon className="lamp-card__placeholder" color="#989898" />
+        )}
       </Link>
       <Container className="lamp-card__body-wrapper">
         <Card.Body className="lamp-card__body">

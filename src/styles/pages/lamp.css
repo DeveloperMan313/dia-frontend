@@ -18,6 +18,14 @@
   border-radius: var(--border-radius);
 }
 
+.page-lamp .page-lamp__placeholder {
+  width: 30rem;
+  height: 30rem;
+  border-radius: var(--border-radius);
+  padding: 5%;
+  overflow: visible;
+}
+
 .page-lamp .page-lamp__info {
   width: 25rem;
   display: flex;

@@ -28,6 +28,11 @@
   aspect-ratio: 1;
 }
 
+.lamp-card .lamp-card__placeholder {
+  padding: 5%;
+  overflow: visible;
+}
+
 .lamp-card .lamp-card__body {
   position: relative;
   display: flex;
