@@ -85,9 +85,6 @@ export const apiService = {
       const response = await fetch(`${API_BASE_URL}/lamps/${id}`);
 
       if (!response.ok) {
-        if (response.status === 404) {
-          return null;
-        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
