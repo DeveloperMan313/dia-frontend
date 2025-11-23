@@ -1,37 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Alert, Spinner } from "react-bootstrap";
-import { Lamp, RequestBin } from "../types";
+import { RequestBin } from "../types";
 import { apiService } from "../services/api";
 import { LampCard } from "../components/LampCard";
 import { TextInput } from "../components/TextInput";
 import { RequestBinIcon } from "../components/RequestBinIcon";
+import { useDispatch } from "react-redux";
+import {
+  setFilterName,
+  setLamps,
+  useFilterName,
+  useLamps,
+} from "../services/lampsSlice";
 
 const LampsPage: React.FC = () => {
-  const [lamps, setLamps] = useState<Lamp[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [searchTitle, setSearchTitle] = useState<string>("");
   const [requestBin, setRequestBin] = useState<RequestBin>({
     request_id: 0,
     item_count: -1,
   });
 
+  const lamps = useLamps();
+  const filterName = useFilterName();
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    loadLamps();
+    if (lamps === null) {
+      loadLamps();
+    }
     loadRequestBin();
   }, []);
 
   const loadLamps = async () => {
     try {
-      setLoading(true);
+      dispatch(setLamps(null));
       setError("");
-      const lampsData = await apiService.getLamps(searchTitle);
-      setLamps(lampsData);
+      const lampsData = await apiService.getLamps(filterName);
+      dispatch(setLamps(lampsData));
     } catch (err) {
       setError("Ошибка при загрузке данных");
       console.error("Error loading lamps:", err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -58,9 +67,9 @@ const LampsPage: React.FC = () => {
       <div className="page-lamps__search-section">
         <TextInput
           type="text"
-          value={searchTitle}
+          value={filterName}
           placeholder="Поиск приборов"
-          onChange={(e) => setSearchTitle(e.target.value)}
+          onChange={(e) => dispatch(setFilterName(e.target.value))}
           onKeyDown={handleSearchEnterKey}
         />
         <Button
@@ -91,7 +100,7 @@ const LampsPage: React.FC = () => {
       )}
 
       {/* Loading Spinner */}
-      {loading && (
+      {lamps === null && (
         <Row className="mb-3">
           <Col className="text-center">
             <Spinner animation="border" role="status">
@@ -102,7 +111,7 @@ const LampsPage: React.FC = () => {
       )}
 
       {/* Lamps Grid */}
-      {!loading && (
+      {lamps !== null && (
         <div className="page-lamps__lamp-cards">
           {lamps.length === 0 ? (
             <Col>
