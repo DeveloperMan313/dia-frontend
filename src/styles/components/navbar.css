@@ -2,16 +2,72 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 4.375rem;
   padding: 0 var(--m-5);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
+  gap: 2rem;
   background-color: var(--bg-primary);
   box-shadow: 0 0.25rem 0.25rem 0 var(--border-color);
   z-index: 100;
+  overflow: hidden;
+  transition: height 0.2s;
+}
+
+.navbar .navbar__head {
+  height: 4.375rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .navbar__togglebtn {
+  display: none;
+}
+
+.navbar .navbar__links {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 430px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 0;
+  }
+
+  .navbar.navbar_expanded {
+    height: 10rem;
+  }
+
+  .navbar .navbar__head {
+    width: 100%;
+  }
+
+  .navbar .navbar__togglebtn {
+    display: block;
+  }
+
+  .navbar .navbar__links {
+    flex-direction: column;
+  }
+}
+
+.navbar .navbar__link {
+  color: var(--text-secondary);
+}
+
+.navbar .navbar__link.navbar__link_active {
+  color: var(--text-primary);
 }
 
 .navbar .navbar__logo {

@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 const HomePage: React.FC = () => {
   return (
@@ -11,14 +10,6 @@ const HomePage: React.FC = () => {
             <h1 className="display-4 mb-4">Let There Be Light</h1>
             <p className="lead">Расчет освещения помещений</p>
           </div>
-        </Col>
-      </Row>
-
-      <Row className="mb-5 justify-content-center">
-        <Col xs="auto">
-          <Link to="/lamps">
-            <Button className="button button_primary">К каталогу</Button>
-          </Link>
         </Col>
       </Row>
 
