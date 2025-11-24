@@ -1,6 +1,5 @@
 import { Lamp, RequestBin } from "../types";
-
-const API_BASE_URL = "/api";
+import { DEST_API } from "../../target_config";
 
 // Mock data for fallback when backend is not available
 const MOCK_LAMPS: Lamp[] = [
@@ -58,7 +57,7 @@ export const apiService = {
       const params = new URLSearchParams();
       if (title) params.append("title", title);
 
-      const response = await fetch(`${API_BASE_URL}/lamps?${params}`);
+      const response = await fetch(`${DEST_API}/lamps?${params}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -82,7 +81,7 @@ export const apiService = {
   // Get lamp by ID
   async getLampById(id: number): Promise<Lamp | null> {
     try {
-      const response = await fetch(`${API_BASE_URL}/lamps/${id}`);
+      const response = await fetch(`${DEST_API}/lamps/${id}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -99,7 +98,7 @@ export const apiService = {
   // Get request bin info for user
   async getRequestBin(): Promise<RequestBin> {
     try {
-      const response = await fetch(`${API_BASE_URL}/light-requests/cart`);
+      const response = await fetch(`${DEST_API}/light-requests/cart`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
