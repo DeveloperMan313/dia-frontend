@@ -1,6 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import mkcert from "vite-plugin-mkcert";
+import fs from "node:fs";
+import path from "node:path";
 
 const vitePWA = VitePWA({
   registerType: "autoUpdate",
@@ -32,9 +35,13 @@ const vitePWA = VitePWA({
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), vitePWA],
+  plugins: [react(), mkcert(), vitePWA],
   base: "dia-frontend",
   server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, "cert.key")),
+      cert: fs.readFileSync(path.resolve(__dirname, "cert.crt")),
+    },
     proxy: {
       "/api": {
         target: "http://localhost:8001",

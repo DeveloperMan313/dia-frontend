@@ -19,9 +19,11 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.4",
     "vite": "^7.1.12",
+    "vite-plugin-mkcert": "^1.17.9",
     "vite-plugin-pwa": "^1.1.0"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2"
   }
