@@ -1,6 +1,6 @@
 import { Lamp, RequestBin } from "../types";
 
-const API_BASE_URL = "/api";
+const API_BASE_URL = "http://localhost:8001/api";
 
 // Mock data for fallback when backend is not available
 const MOCK_LAMPS: Lamp[] = [
